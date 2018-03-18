@@ -1,7 +1,7 @@
 import requests
 
-from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import create_engine, func
+from sqlalchemy import Column, DateTime, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -26,9 +26,9 @@ class Request(Base):
     method = Column(String)
     response_content = Column(String)
     response_status_code = Column(Integer)
+    created_at = Column(DateTime, nullable=False, server_default=func.now())
     # Column('headers', String),  # Should be JSON?
     # Column('data', String),  # Should be JSON?
-    # TODO: add created_at time stamp
 
     def __repr__(self):
         return '{} {}'.format(self.id, self.url)

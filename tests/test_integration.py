@@ -1,3 +1,4 @@
+import datetime
 import requests
 from logstar import empty_requests_table, get_all_requests, logstar_on
 from weather import Weather
@@ -17,7 +18,7 @@ def test_logstar_api_call_get_logs_request():
     assert request_items[0].response_content == \
         '{\n  "user-agent": "python-requests/2.18.4"\n}\n'
     assert request_items[0].response_status_code == 200
-    # assert rows[0]['response_time'] # Use freezegun?
+    assert type(request_items[0].created_at) == datetime.datetime
 
 
 def test_logstar_api_call_post_logs_request():
@@ -32,7 +33,7 @@ def test_logstar_api_call_post_logs_request():
     assert request_items[0].method == 'POST'
     assert '<h1>Method Not Allowed</h1>' in request_items[0].response_content
     assert request_items[0].response_status_code == 405
-    # assert rows[0]['response_time'] # Use freezegun?
+    assert type(request_items[0].created_at) == datetime.datetime
 
 
 # TODO: mark this test as it calls an external URL
@@ -52,6 +53,7 @@ def test_logstar_external_library_logs_requests():
     assert 'Full Forecast at Yahoo! Weather' in \
         request_items[0].response_content
     assert request_items[0].response_status_code == 200
+    assert type(request_items[0].created_at) == datetime.datetime
 
 
 # def call_api_get_headers():
