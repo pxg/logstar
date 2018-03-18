@@ -1,9 +1,9 @@
 # Immediate
 
-0. Timeboxed experiment to do the same with URLib (20 mins)
-1. Add tests
-2. Save data to postgres. Set-up flask app with SQLAlchemy and Alembic
-3. Does it work if monkey_patch_requests is a package? logstar_on()
+0. Add tests, seperate functions which get data from printing
+1. Save data to postgres. Set-up flask app with SQLAlchemy and Alembic
+2. Does it work if monkey_patch_requests is a package? logstar_on()
+3. Integrate with project for calling Monzo and Google sheets API
 
 # Later
 
