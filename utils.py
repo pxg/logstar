@@ -21,7 +21,7 @@ def call_api_get_headers():
         headers={'user-agent': 'my-app/0.0.1'})
 
 
-# TODO: call_api_get_data
+# TODO: add call_api_get_data and add test
 
 
 def call_api_post():

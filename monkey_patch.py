@@ -31,7 +31,6 @@ def post_and_log(*args, **kwargs):
     return response
 
 
-# NOTE: when adding tests seperate getting values from writing to the database
 def log_request(method, *args, **kwargs):
     """
     Log the details of the requests
