@@ -1,9 +1,11 @@
 # Immediate
 
-0. Get the response data, headers and status codes
-1. Get the URL, query string
-2. Check this works ok for https (using https httbin if available)
-3. Save data to postgres. Set-up flask app with SQLAlchemy and Alembic
+1. Check if works when requests is imported later
+2. Check if it works when requests is part of an underlying library
+3. Timeboxed experiment to do the same with URLib (20 mins)
+4. Add tests
+5. Make work for get too
+6. Save data to postgres. Set-up flask app with SQLAlchemy and Alembic
 
 # Later
 
