@@ -1,31 +1,60 @@
 import requests
+
 from sqlalchemy import create_engine
-from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+
+# For Monky Patching
 old_boring_post = requests.post
 old_boring_get = requests.get
 
-
-# TOOD: find nicer plan to put this code
+# SQLAlchemy configuration (can we move this? to it's own file?)
 # TODO: pick up credentials from envvar
 engine = create_engine('postgresql://petegraham@localhost/logstar')
-metadata = MetaData()
-requests_table = Table(
-    'requests', metadata,
-    Column('id', Integer, primary_key=True),
-    Column('url', String),
-    Column('method', String),
+Base = declarative_base()
+Session = sessionmaker(bind=engine)
+
+
+# TODO: move to models.py file
+class Request(Base):
+    # TODO: specify what fields can be null
+    __tablename__ = 'requests'
+    id = Column(Integer, primary_key=True)
+    url = Column(String)
+    method = Column(String)
+    response_content = Column(String)
+    response_status_code = Column(Integer)
     # Column('headers', String),  # Should be JSON?
     # Column('data', String),  # Should be JSON?
     # TODO: add created_at time stamp
-)
-metadata.create_all(engine)
+
+    def __repr__(self):
+        return '{} {}'.format(self.id, self.url)
+
+
+# TODO: move this to a initial configuration command
+Base.metadata.create_all(engine)
+
+
+def empty_requests_table():
+    session = Session()
+    session.query(Request).delete()
+    session.commit()
+
+
+# TODO: move from this file?
+def get_all_requests():
+    session = Session()
+    return session.query(Request).all()
 
 
 def logstar_on():
     """
     Switch logstar on so it's logs request and response data
+    Monkey patch the requests get and post functions
     """
-    # Monkey patch the requests get and post functions
     requests.get = get_and_log
     requests.post = post_and_log
 
@@ -34,9 +63,15 @@ def get_and_log(*args, **kwargs):
     """
     Log the request and response data and call original requests get function
     """
-    log_request('GET', *args, **kwargs)
+    request_instance = log_request('GET', *args, **kwargs)
+    session = Session()
+    session.add(request_instance)
+    session.commit()
+
     response = old_boring_get(*args, **kwargs)
-    log_response(response)
+
+    log_response(request_instance, response)
+    session.commit()
     return response
 
 
@@ -44,9 +79,15 @@ def post_and_log(*args, **kwargs):
     """
     Log the request and response data and call original requests post function
     """
-    log_request('POST', *args, **kwargs)
+    request_instance = log_request('POST', *args, **kwargs)
+    session = Session()
+    session.add(request_instance)
+    session.commit()
+
     response = old_boring_post(*args, **kwargs)
-    log_response(response)
+
+    log_response(request_instance, response)
+    session.commit()
     return response
 
 
@@ -54,24 +95,17 @@ def log_request(method, *args, **kwargs):
     """
     Log the details of the requests
     """
-    # print('Request url: {}'.format(args[0]))  # could use r.url instead?
-    # print('Request method: {}'.format(method))
-    # print('Request headers: {}'.format(kwargs.get('headers')))
-    # print('Request data: {}'.format(kwargs.get('data')))
-    ins = requests_table.insert().values(
-        url=args[0],
-        method=method)
-    conn = engine.connect()
-    return conn.execute(ins)
+    # TODO: log header - kwargs.get('headers'))
+    # TODO: log data - kwargs.get('data')))
+    request_instance = Request(url=args[0], method=method)
+    return request_instance
 
 
-def log_response(response):
+def log_response(request_instance, response):
     """
     Log the details of the response
     """
-    # print('Response status code: {}'.format(response.status_code))
-    # # TODO: see if response is JSON here
-    # print('Response data: {}'.format(response.text))
-    # print('Response time: {}'.format(response.elapsed.total_seconds()))
-    # print('Response headers: {}'.format(response.headers))
-    pass
+    request_instance.response_content = response.text
+    request_instance.response_status_code = response.status_code
+    # TODO: save time response.elapsed.total_seconds()))
+    # TODO: save headers: {}'.format(response.headers))
