@@ -1,3 +1,8 @@
+"""
+This simple script swtiches Logstar on. A request is then made with requests
+and an external python lib, weather, which uses requessts in it's underlying
+code. Request and response data for both API requests are logged by Logstar
+"""
 import requests
 from logstar import logstar_on
 from weather import Weather
