@@ -1,6 +1,17 @@
-from monkey_patch import monkey_patch_requests
-from utils import call_external_lib
+import requests
+from logstar import logstar_on
+from weather import Weather
 
 
-monkey_patch_requests()
-call_external_lib()
+logstar_on()
+
+# API call using requests
+requests.get(
+    'http://127.0.0.1:8000/user-agent?name=pete',
+    data={'key': 'value'})
+
+# API call using extenral lib
+weather = Weather()
+lookup = weather.lookup(560743)
+condition = lookup.condition()
+print(condition.text())

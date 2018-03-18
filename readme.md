@@ -3,6 +3,17 @@
 Tool to log and view metrics about API requests.
 
 ## Installation
+I recommend first creating a python3 virtual environment:
+```
+mkvirtualenv --python=`which python3` logstar
+```
+
+Then install requirements and the package:
+```
+pip install -r requirements.txt
+pip install -e .
+```
+
 For offline development you can run against a httpbin API:
 ```
 gunicorn httpbin:app

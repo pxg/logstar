@@ -3,10 +3,11 @@ old_boring_post = requests.post
 old_boring_get = requests.get
 
 
-def monkey_patch_requests():
+def logstar_on():
     """
-    Patch the requests post function
+    Switch logstar on so it's logs request and response data
     """
+    # Monkey patch the requests get and post functions
     requests.get = get_and_log
     requests.post = post_and_log
 
