@@ -1,11 +1,9 @@
 # Immediate
 
-1. Check if works when requests is imported later
-2. Check if it works when requests is part of an underlying library
-3. Timeboxed experiment to do the same with URLib (20 mins)
-4. Add tests
-5. Make work for get too
-6. Save data to postgres. Set-up flask app with SQLAlchemy and Alembic
+0. Timeboxed experiment to do the same with URLib (20 mins)
+1. Add tests
+2. Save data to postgres. Set-up flask app with SQLAlchemy and Alembic
+3. Does it work if monkey_patch_requests is a package? logstar_on()
 
 # Later
 
@@ -18,3 +16,5 @@ Script making an API request using async calls
 Add pytest
 Add CircleCI
 Add black formatter
+Make into package
+Use Python type annotations
