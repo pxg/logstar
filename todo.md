@@ -1,12 +1,10 @@
 # Immediate
 
-0. Clean-up SQL alchemy integration. Allow toggling of the DB
+0. Allow toggling of the DB for the test DB
 1. Add extra fields into DB and response data. TDD
-2. Add more detailed SQL Alchemy tests
-3. Switch to SQLAlchemy ORM
-4. Add flag to swtich between httpbin local and using the internet
-5. Integrate with project for calling Monzo and Google sheets API
-6. Build simple API and polling frontend
+2. Add flag to swtich between httpbin local and using the internet
+3. Integrate with project for calling Monzo and Google sheets API
+4. Build simple API and polling frontend
 
 # Later
 
