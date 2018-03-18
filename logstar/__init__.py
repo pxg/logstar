@@ -1,3 +1,4 @@
+import os
 import requests
 
 from sqlalchemy import create_engine
@@ -12,20 +13,24 @@ old_boring_get = requests.get
 
 # SQLAlchemy configuration (can we move this? to it's own file?)
 # TODO: pick up credentials from envvar
-engine = create_engine('postgresql://petegraham@localhost/logstar')
+engine = create_engine(os.environ.get('LOGSTAR_DB_URL'))
 Session = sessionmaker(bind=engine)
 # TODO: move this to a initial configuration command
 Base.metadata.create_all(engine)
 
 
-# TODO: move from this file?
+def get_db_url():
+    return os.environ.get('LOGSTAR_DB_URL')
+
+
+# TODO: move from this to db_utils.py file
 def empty_requests_table():
     session = Session()
     session.query(Request).delete()
     session.commit()
 
 
-# TODO: move from this file?
+# TODO: move this to db_utils.py file
 def get_all_requests():
     session = Session()
     return session.query(Request).all()

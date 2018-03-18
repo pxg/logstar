@@ -14,6 +14,11 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
+Set the follow environment variable:
+```
+export LOGSTAR_DB_URL='postgresql://petegraham@localhost/logstar'
+```
+
 For offline development you can run against a httpbin API:
 ```
 gunicorn httpbin:app
