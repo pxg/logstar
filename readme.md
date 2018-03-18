@@ -40,5 +40,5 @@ gunicorn httpbin:app
 
 Next run:
 ```
-py.test unit_tests.py
+py.test
 ```

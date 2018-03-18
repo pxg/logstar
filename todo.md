@@ -1,10 +1,11 @@
 # Immediate
 
-0. Save data to postgres. Set-up flask app with SQLAlchemy and Alembic
-1. Add integration tests which look in the database
-2. Add flag to swtich between httpbin local and using the internet
-3. Integrate with project for calling Monzo and Google sheets API
-4. Build simple API and polling frontend
+0. Clean-up SQL alchemy integration and tests
+1. Add extra fields into DB and response data. TDD
+2. Add more detailed SQL Alchemy tests
+3. Add flag to swtich between httpbin local and using the internet
+4. Integrate with project for calling Monzo and Google sheets API
+5. Build simple API and polling frontend
 
 # Later
 
