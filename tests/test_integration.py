@@ -4,13 +4,10 @@ import requests
 from weather import Weather
 
 from logstar import logstar_on
-from logstar.db_utils import empty_requests_table, get_all_requests
+from logstar.db_utils import get_all_requests
 
 
 def test_logstar_api_call_get_logs_request():
-    # TODO: can I use a fixture to wipe the DB so tests are cleaner?
-    empty_requests_table()
-
     logstar_on()
     requests.get('http://127.0.0.1:8000/user-agent?name=pete')
 
@@ -25,8 +22,6 @@ def test_logstar_api_call_get_logs_request():
 
 
 def test_logstar_api_call_post_logs_request():
-    empty_requests_table()
-
     logstar_on()
     requests.post('http://127.0.0.1:8000/user-agent?name=pete')
 
@@ -41,8 +36,6 @@ def test_logstar_api_call_post_logs_request():
 
 # TODO: mark this test as it calls an external URL
 def test_logstar_external_library_logs_requests():
-    empty_requests_table()
-
     logstar_on()
     weather = Weather()
     lookup = weather.lookup(560743)
