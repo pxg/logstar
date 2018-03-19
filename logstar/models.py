@@ -9,7 +9,7 @@ class Request(Base):
     # Request fields
     url = Column(String, nullable=False)
     method = Column(String, nullable=False)
-    # TODO: add field headers
+    headers = Column(String, nullable=True)
     # TODO: payload
 
     # Reponse fields
