@@ -84,5 +84,5 @@ def log_response(request_instance, response):
     """
     request_instance.response_content = response.text
     request_instance.response_status_code = response.status_code
+    request_instance.response_headers = str(response.headers)
     # TODO: save time response.elapsed.total_seconds()))
-    # TODO: save headers: {}'.format(response.headers))

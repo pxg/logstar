@@ -15,7 +15,7 @@ class Request(Base):
     # Reponse fields
     response_content = Column(String, nullable=True)
     response_status_code = Column(Integer, nullable=True)
-    # TODO: add field response headers
+    response_headers = Column(String, nullable=True)
     # TODO: add field elapsed time, or have a DateTime field and calculate
 
     # System fields
