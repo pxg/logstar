@@ -20,6 +20,8 @@ def test_api_call_get_logs_request():
         '{\n  "user-agent": "python-requests/2.18.4"\n}\n'
     assert request_items[0].response_status_code == 200
     assert type(request_items[0].created_at) == datetime.datetime
+    assert request_items[0].headers is None
+    assert request_items[0].payload is None
 
 
 def test_api_call_post_logs_request():
@@ -51,10 +53,9 @@ def test_api_call_external_library_get_logs_requests():
         request_items[0].response_content
     assert request_items[0].response_status_code == 200
     assert type(request_items[0].created_at) == datetime.datetime
-    assert request_items[0].headers is None
 
 
-def test_call_api_get_headers():
+def test_call_api_get_with_headers():
     logstar_on()
     requests.get(
         'http://127.0.0.1:8000/user-agent',
@@ -65,10 +66,16 @@ def test_call_api_get_headers():
     assert request_items[0].headers == "{'user-agent': 'my-app/0.0.1'}"
 
 
-# def call_api_post():
-#     """
-#     Simple post call with requests to a URL with headers
-#     """
-#     requests.post(
-#         'http://127.0.0.1:8000/user-agent?name=pete',
-#         data={'key': 'value'})
+def test_call_api_post_with_payload():
+    """
+    Simple post call with requests to a URL with headers
+    """
+    logstar_on()
+
+    requests.post(
+        'http://127.0.0.1:8000/post',
+        data={'key': 'value'})
+
+    request_items = get_all_requests()
+    assert len(request_items) == 1
+    assert request_items[0].payload == "{'key': 'value'}"

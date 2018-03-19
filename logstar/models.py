@@ -10,7 +10,7 @@ class Request(Base):
     url = Column(String, nullable=False)
     method = Column(String, nullable=False)
     headers = Column(String, nullable=True)
-    # TODO: payload
+    payload = Column(String, nullable=True)
 
     # Reponse fields
     response_content = Column(String, nullable=True)

@@ -62,13 +62,18 @@ def log_request(method, *args, **kwargs):
     """
     Log the details of the requests
     """
-    # TODO: log payload - kwargs.get('data')))
+    payload = kwargs.get('data')
+    if payload is not None:
+        payload = str(payload)
+
     headers = kwargs.get('headers')
     if headers is not None:
         headers = str(headers)
+
     request_instance = Request(
         headers=headers,
         method=method,
+        payload=payload,
         url=args[0])
     return request_instance
 
