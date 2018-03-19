@@ -10,11 +10,14 @@ old_boring_post = requests.post
 old_boring_get = requests.get
 
 
-# SQLAlchemy configuration (can we move this? to it's own file?)
+def create_tables():
+    Base.metadata.create_all(engine)
+
+# SQLAlchemy configuration
 engine = create_engine(os.environ.get('LOGSTAR_DB_URL'))
 Session = sessionmaker(bind=engine)
-# TODO: move this to a initial configuration command
-Base.metadata.create_all(engine)
+# TODO: move this to a initial configuration command?
+create_tables()
 
 
 def logstar_on():

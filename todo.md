@@ -1,8 +1,8 @@
 # Immediate
 
-0. Add extra fields into DB and response data. TDD
-1. Add flag to swtich between httpbin local and using the internet
-2. Integrate with project for calling Monzo and Google sheets API
+0. Add extra fields into DB elapsed time. TDD
+1. Recreate DB on start of test run
+2. Integrate with project for calling Monzo and Google sheets API to check it really works
 3. Build simple API and polling frontend
 
 # Later

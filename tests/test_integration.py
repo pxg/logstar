@@ -72,7 +72,6 @@ def test_call_api_post_with_payload():
     Simple post call with requests to a URL with headers
     """
     logstar_on()
-
     requests.post(
         'http://127.0.0.1:8000/post',
         data={'key': 'value'})

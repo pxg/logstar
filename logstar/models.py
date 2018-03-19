@@ -1,5 +1,5 @@
 from sqlalchemy import func
-from sqlalchemy import Column, DateTime, Integer, String
+from sqlalchemy import Column, DateTime, DECIMAL, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
@@ -16,6 +16,8 @@ class Request(Base):
     response_content = Column(String, nullable=True)
     response_status_code = Column(Integer, nullable=True)
     response_headers = Column(String, nullable=True)
+    time = Column(DECIMAL(10, 2))  # Probably not the correct precision
+    pete = Column(String, nullable=True)
     # TODO: add field elapsed time, or have a DateTime field and calculate
 
     # System fields
