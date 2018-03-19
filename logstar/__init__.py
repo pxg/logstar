@@ -13,10 +13,11 @@ old_boring_get = requests.get
 def create_tables():
     Base.metadata.create_all(engine)
 
+
 # SQLAlchemy configuration
 engine = create_engine(os.environ.get('LOGSTAR_DB_URL'))
 Session = sessionmaker(bind=engine)
-# TODO: move this to a initial configuration command?
+# TODO: potentially move this to a initial configuration command?
 create_tables()
 
 
@@ -88,4 +89,4 @@ def log_response(request_instance, response):
     request_instance.response_content = response.text
     request_instance.response_status_code = response.status_code
     request_instance.response_headers = str(response.headers)
-    # TODO: save time response.elapsed.total_seconds()))
+    request_instance.time = response.elapsed.total_seconds()

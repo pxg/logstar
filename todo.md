@@ -1,9 +1,8 @@
 # Immediate
 
-0. Add extra fields into DB elapsed time. TDD
-1. Recreate DB on start of test run
-2. Integrate with project for calling Monzo and Google sheets API to check it really works
-3. Build simple API and polling frontend
+0. Integrate with project for calling Monzo and Google sheets API to check it really works
+1. Build simple API
+2. Build frontend app which polls API
 
 # Later
 

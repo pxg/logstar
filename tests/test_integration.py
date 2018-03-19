@@ -1,5 +1,6 @@
 import datetime
 import requests
+from decimal import Decimal
 
 import pytest
 from weather import Weather
@@ -23,6 +24,7 @@ def test_api_call_get_logs_request():
     assert request_items[0].headers is None
     assert request_items[0].payload is None
     assert "'Server': 'gunicorn/19.7.1'" in request_items[0].response_headers
+    assert type(request_items[0].time) == Decimal
 
 
 def test_api_call_post_logs_request():
