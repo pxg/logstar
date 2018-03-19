@@ -9,15 +9,12 @@ from .models import Base, Request
 old_boring_post = requests.post
 old_boring_get = requests.get
 
+
 # SQLAlchemy configuration (can we move this? to it's own file?)
 engine = create_engine(os.environ.get('LOGSTAR_DB_URL'))
 Session = sessionmaker(bind=engine)
 # TODO: move this to a initial configuration command
 Base.metadata.create_all(engine)
-
-
-def get_db_url():
-    return os.environ.get('LOGSTAR_DB_URL')
 
 
 def logstar_on():

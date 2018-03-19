@@ -1,10 +1,9 @@
 # Immediate
 
-0. Allow toggling of the production DB and test DB
-1. Add extra fields into DB and response data. TDD
-2. Add flag to swtich between httpbin local and using the internet
-3. Integrate with project for calling Monzo and Google sheets API
-4. Build simple API and polling frontend
+0. Add extra fields into DB and response data. TDD
+1. Add flag to swtich between httpbin local and using the internet
+2. Integrate with project for calling Monzo and Google sheets API
+3. Build simple API and polling frontend
 
 # Later
 
@@ -25,3 +24,4 @@ Check for compatibility with Celery, RQ, etc
 
 logstar_off function
 logstar decorator for functions
+Do all logging using python logging to avoid issues with DB writing blocking

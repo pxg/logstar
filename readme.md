@@ -19,6 +19,13 @@ Set the follow environment variable:
 export LOGSTAR_DB_URL='postgresql://petegraham@localhost/logstar'
 ```
 
+Create the databases:
+```
+psql
+create database logstar;
+create database logstar_test;
+```
+
 For offline development you can run against a httpbin API:
 ```
 gunicorn httpbin:app
