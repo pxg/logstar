@@ -1,7 +1,10 @@
 import datetime
 import requests
-from logstar import empty_requests_table, get_all_requests, logstar_on
+
 from weather import Weather
+
+from logstar import logstar_on
+from logstar.db_utils import empty_requests_table, get_all_requests
 
 
 def test_logstar_api_call_get_logs_request():
