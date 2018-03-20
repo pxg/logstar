@@ -1,8 +1,16 @@
 import pytest
 import sqlalchemy
 
+
 from logstar import engine, Session, create_tables
+from logstar.api import create_app
 from logstar.models import Request
+
+
+@pytest.fixture
+def app():
+    app = create_app()
+    return app
 
 
 @pytest.fixture(autouse=True, scope='session')

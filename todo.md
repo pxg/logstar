@@ -1,7 +1,7 @@
 # Immediate
 
 0. Integrate with project for calling Monzo and Google sheets API to check it really works
-1. Build simple API
+1. Build simple API. Flask
 2. Build frontend app which polls API
 
 # Later
@@ -12,7 +12,7 @@ Test with simple Salesforce library
 # Tech
 
 Have pytest automatically run httpbin
-Add CircleCI
+Add CircleCI. Could use https://hub.docker.com/r/citizenstig/httpbin/
 Add black formatter
 Make into package
 Use Python type annotations
