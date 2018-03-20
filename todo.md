@@ -1,8 +1,10 @@
 # Immediate
 
-0. Integrate with project for calling Monzo and Google sheets API to check it really works
-1. Build simple API. Flask
-2. Build frontend app which polls API
+0. Run API using package command
+1. Move serialization function to it's own file
+2. Create logger.py with main logging functions
+3. Integrate with project for calling Monzo and Google sheets API to check it really works
+4. Build frontend app which polls API
 
 # Later
 

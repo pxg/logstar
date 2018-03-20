@@ -24,7 +24,6 @@ def test_api_no_request_returns_empy_list(client):
     assert response.json == []
 
 
-@pytest.mark.xfail
 def test_api_request_returns_one_item(client):
     logstar_on()
     requests.get('http://127.0.0.1:8000/user-agent?name=pete')
@@ -33,6 +32,14 @@ def test_api_request_returns_one_item(client):
 
     assert len(response.json) == 1
 
-# TOOD: Test actual data returned
+
+def test_api_request_returns_request_data(client):
+    logstar_on()
+    requests.get('http://127.0.0.1:8000/user-agent?name=asdf')
+
+    response = client.get(url_for('api_requests'))
+
+    assert response.json[0]['url'] == \
+        'http://127.0.0.1:8000/user-agent?name=asdf'
 
 # TODO: Test ordering
