@@ -26,7 +26,7 @@ def serialize_request(r):
     }
 
 
-def create_app(config_filename=False):
+def create_app():
     """
     Based on https://www.python-boilerplate.com/py3+flask+pytest/
     Alternative structure http://pytest-flask.readthedocs.io/en/latest/features.html

@@ -4,7 +4,9 @@ import requests
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from .models import Base, Request
+from .models import Base
+from .logger import log_response, log_request
+
 # For Monky Patching
 old_boring_post = requests.post
 old_boring_get = requests.get
@@ -17,7 +19,7 @@ def create_tables():
 # SQLAlchemy configuration
 engine = create_engine(os.environ.get('LOGSTAR_DB_URL'))
 Session = sessionmaker(bind=engine)
-# TODO: potentially move this to a initial configuration command?
+# TODO: move this to a initial configuration command
 create_tables()
 
 
@@ -60,33 +62,3 @@ def post_and_log(*args, **kwargs):
     log_response(request_instance, response)
     session.commit()
     return response
-
-
-def log_request(method, *args, **kwargs):
-    """
-    Log the details of the requests
-    """
-    payload = kwargs.get('data')
-    if payload is not None:
-        payload = str(payload)
-
-    headers = kwargs.get('headers')
-    if headers is not None:
-        headers = str(headers)
-
-    request_instance = Request(
-        headers=headers,
-        method=method,
-        payload=payload,
-        url=args[0])
-    return request_instance
-
-
-def log_response(request_instance, response):
-    """
-    Log the details of the response
-    """
-    request_instance.response_content = response.text
-    request_instance.response_status_code = response.status_code
-    request_instance.response_headers = str(response.headers)
-    request_instance.time = response.elapsed.total_seconds()
