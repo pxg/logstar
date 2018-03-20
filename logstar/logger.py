@@ -1,4 +1,42 @@
+import requests
+
+from .db import Session
 from .models import Request
+# For Monkey Patching
+old_boring_post = requests.post
+old_boring_get = requests.get
+
+
+def get_and_log(*args, **kwargs):
+    """
+    Log the request and response data and call original requests get function
+    """
+    request_instance = log_request('GET', *args, **kwargs)
+    session = Session()
+    session.add(request_instance)
+    session.commit()
+
+    response = old_boring_get(*args, **kwargs)
+
+    log_response(request_instance, response)
+    session.commit()
+    return response
+
+
+def post_and_log(*args, **kwargs):
+    """
+    Log the request and response data and call original requests post function
+    """
+    request_instance = log_request('POST', *args, **kwargs)
+    session = Session()
+    session.add(request_instance)
+    session.commit()
+
+    response = old_boring_post(*args, **kwargs)
+
+    log_response(request_instance, response)
+    session.commit()
+    return response
 
 
 def log_request(method, *args, **kwargs):

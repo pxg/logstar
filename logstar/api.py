@@ -1,6 +1,6 @@
 # TODO: make imports relative
-from logstar import Session
 from logstar.models import Request
+from logstar.db import Session
 
 from flask import Flask
 from flask import jsonify
@@ -8,6 +8,7 @@ from flask import jsonify
 
 # TODO: move me to serializers.py
 # TODO: needs unit test
+# TODO: do loop field and attempt to json serializer try catch
 def serialize_request(r):
     """
     Format the request for return by the API

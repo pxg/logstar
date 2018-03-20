@@ -54,3 +54,9 @@ Next run:
 ```
 py.test
 ```
+
+## Running the API
+From the root of the repo:
+```
+python logstar/api.py
+```

@@ -6,7 +6,7 @@ import pytest
 from weather import Weather
 
 from logstar import logstar_on
-from logstar.db_utils import get_all_requests
+from logstar.db import get_all_requests
 
 
 def test_api_call_get_logs_request():

@@ -1,10 +1,11 @@
 # Immediate
 
 0. Run API using package command
-1. Move serialization function to it's own file
-2. Create logger.py with main logging functions
-3. Integrate with project for calling Monzo and Google sheets API to check it really works
-4. Build frontend app which polls API
+1. Move serialization function to it's own file and make smarter
+2. Integrate with project for calling Monzo and Google sheets API to check it really works
+3. Build frontend app which polls API
+4. Create intialization/installation command
+5. Make sure it works for put and delete requests
 
 # Later
 
