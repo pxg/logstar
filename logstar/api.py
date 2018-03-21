@@ -3,7 +3,7 @@ from logstar.models import Request
 from logstar.db import Session
 
 from flask import Flask
-from flask import jsonify
+from flask import jsonify, render_template
 
 
 # TODO: move me to serializers.py
@@ -35,7 +35,11 @@ def create_app():
     app = Flask(__name__)
 
     @app.route('/')
-    @app.route('/<int:request_id>')
+    def home():
+        return render_template('home.html')
+
+    @app.route('/api/')
+    @app.route('/api/<int:request_id>')
     def api_requests(request_id=None):
         requests = Session().query(Request).order_by('created_at')
         if request_id is not None:

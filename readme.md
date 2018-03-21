@@ -55,6 +55,11 @@ Next run:
 py.test
 ```
 
+To run the tests without connecting to external services run:
+```
+pytest -m "not webtest"
+```
+
 ## Running the API
 From the root of the repo:
 ```
