@@ -35,8 +35,11 @@ def create_app():
     app = Flask(__name__)
 
     @app.route('/')
-    def api_requests():
+    @app.route('/<int:request_id>')
+    def api_requests(request_id=None):
         requests = Session().query(Request).order_by('created_at')
+        if request_id is not None:
+            requests = requests.filter(Request.id > request_id)
         return jsonify([serialize_request(r) for r in requests])
 
     return app

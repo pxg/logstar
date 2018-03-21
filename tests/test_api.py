@@ -4,6 +4,7 @@ import requests
 from flask import url_for
 
 from logstar import logstar_on
+from logstar.db import get_highest_request_id
 
 
 def test_api_returns_200_ok(client):
@@ -50,3 +51,25 @@ def test_api_request_ordered_newest_first(client):
     response = client.get(url_for('api_requests'))
 
     assert response.json[0]['id'] < response.json[1]['id']
+
+
+def test_api_no_items_higher_than_id(client):
+    logstar_on()
+    requests.get('http://127.0.0.1:8000/user-agent')
+    request_id = get_highest_request_id()
+
+    response = client.get(url_for('api_requests', request_id=request_id))
+
+    assert response.json == []
+
+
+def test_api_get_requests_newer_than_id(client):
+    logstar_on()
+    requests.get('http://127.0.0.1:8000/user-agent')
+    request_id = get_highest_request_id()
+    requests.get('http://127.0.0.1:8000/user-agent')
+
+    response = client.get(url_for('api_requests', request_id=request_id))
+
+    assert len(response.json) == 1
+    assert response.json[0]['id'] == request_id + 1
