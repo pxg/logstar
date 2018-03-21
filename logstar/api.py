@@ -36,7 +36,7 @@ def create_app():
 
     @app.route('/')
     def api_requests():
-        requests = Session().query(Request).all()
+        requests = Session().query(Request).order_by('created_at')
         return jsonify([serialize_request(r) for r in requests])
 
     return app

@@ -1,6 +1,6 @@
 # Immediate
 
-0. Run API using package command
+0. Run API using package command, and move to it's own directory
 1. Move serialization function to it's own file and make smarter
 2. Integrate with project for calling Monzo and Google sheets API to check it really works
 3. Build frontend app which polls API

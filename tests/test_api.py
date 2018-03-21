@@ -41,4 +41,12 @@ def test_api_request_returns_request_data(client):
     assert response.json[0]['url'] == \
         'http://127.0.0.1:8000/user-agent?name=asdf'
 
-# TODO: Test ordering
+
+def test_api_request_ordered_newest_first(client):
+    logstar_on()
+    requests.get('http://127.0.0.1:8000/user-agent?name=first')
+    requests.get('http://127.0.0.1:8000/user-agent?name=second')
+
+    response = client.get(url_for('api_requests'))
+
+    assert response.json[0]['id'] < response.json[1]['id']
