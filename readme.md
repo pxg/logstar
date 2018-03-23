@@ -2,6 +2,8 @@
 
 Tool to log and view metrics about API requests.
 
+The motivation for this project is I wanted a non-intrusive way to log external (http) API requests in Python. I investigated solutions such as New Relic but I couldn't find an existing tool which would log all the request and response data I wanted to capture.
+
 ## Installation
 I recommend first creating a python3 virtual environment:
 ```
