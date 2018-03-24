@@ -5,15 +5,14 @@
     <script src="{{ url_for('static', filename = 'app.js') }}"></script>
 </head>
 <body>
-    <pre>
+    <code>
     <h1>LogStar</h1>
-
-    <table id='requests'>
+    <table id='requests' cellspacing="10">
         <tr>
             <th>URL</th>
-            <th>status</th>
-            <th>method</th>
             <th>time</th>
+            <th>method</th>
+            <th>status</th>
             <th>created at</th>
             <!-- TODO: add status, method, time -->
         </tr>
@@ -22,6 +21,6 @@
     TODO: continually poll the API looking for newer requests
     TODO: add get more button
     -->
-    </pre>
+    </code>
 </body>
 </html>

@@ -1,28 +1,39 @@
+/** Loop our requests and output them to the table */
 function displayRequests(requests){
     var table = document.getElementById('requests')
-    // TODO: check JS coding conventions for line below http://crockford.com/javascript/code.html
-    for (var i = 0, len = requests.length; i < len; i++) {
+    for (var i=0, len=requests.length; i < len; i++) {
         displayRequest(table, requests[i]);
     }
 }
 
 
-// TODO: test with a 404 in the database
+/** Display a request as a row in the table */
 function displayRequest(table, request){
     var row = table.insertRow();
-    // TODO: add hyperlink to page with details for request
-    addCell(row, request['url']);
-    addCell(row, request['response_status_code']);
-    addCell(row, request['method']);
+    addCell(row, truncate(request['url']), '/request/' + request['id'] + '/');
     addCell(row, request['time']);
+    addCell(row, request['method']);
+    addCell(row, request['response_status_code']);
     addCell(row, request['created_at']);
 }
 
 
-function addCell(row, data){
+/** Add a cell to the row */
+function addCell(row, content, url=false){
     var cell  = row.insertCell();
-    var text  = document.createTextNode(data);
-    cell.appendChild(text);
+    if(url != false){
+        content = '<a href="' + url + '">' + content + '</a>';
+    }
+    cell.innerHTML = content
+}
+
+
+/** Truncate a string if it's over a set length */
+function truncate(string, length=80){
+    if(string.length >= length){
+        return string.substring(0, length) + '...';
+    }
+    return string;
 }
 
 

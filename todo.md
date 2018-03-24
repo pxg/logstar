@@ -1,15 +1,16 @@
 # Immediate
 
-Make API return newest items first
+0. Stand alone request page
+1. Continually polls the API
+2. Load more on the API (pagination)
 
-0. Run API using package command, and move to it's own directory
-1. Move serialization function to it's own file and make smarter
-2. Integrate with project for calling Monzo and Google sheets API to check it really works
-3. Build frontend app which polls API
-4. Create intialization/installation command
-5. Make sure it works for put and delete requests
-6. Clean installation of Repo to make sure instructions are good
-7. Run the UI/API from the package (make sure non-python files are included by installing from a Github URL with requirements.txt)
+3. Run API using package command, and move to it's own directory
+4. Move serialization function to it's own file and make smarter
+5. Integrate with project for calling Monzo and Google sheets API to check it really works
+6. Create intialization/installation command
+7. Make sure it works for put and delete requests
+8. Clean installation of Repo to make sure instructions are good
+9. Run the UI/API from the package (make sure non-python files are included by installing from a Github URL with requirements.txt)
 
 # Later
 
