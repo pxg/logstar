@@ -31,3 +31,15 @@ def empty_requests_table():
     session = Session()
     session.query(Request).delete()
     session.commit()
+
+
+@pytest.fixture
+def http_request():
+    http_request = Request(
+        method='GET',
+        response_content='amazing content',
+        url='http://petegraham.co.uk')
+    session = Session()
+    session.add(http_request)
+    session.commit()
+    return http_request
