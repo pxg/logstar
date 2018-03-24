@@ -1,7 +1,7 @@
 /** Loop our requests and output them to the table */
 function displayRequests(requests) {
     var table = document.getElementById('requests')
-    for (var i=0, len=requests.length; i < len; i++) {
+    for (var i=requests.length - 1; i >= 0; i--) {
         displayRequest(table, requests[i]);
     }
 }
@@ -9,7 +9,8 @@ function displayRequests(requests) {
 
 /** Display a request as a row in the table */
 function displayRequest(table, request) {
-    var row = table.insertRow();
+    // Insert after the heading
+    var row = table.insertRow(1);
     addCell(row, truncate(request['url']), '/request/' + request['id'] + '/');
     addCell(row, request['time']);
     addCell(row, request['method']);
@@ -37,10 +38,24 @@ function truncate(string, length=80) {
 }
 
 
-fetch('/api/', {
-    method: 'get'
-}).then(function(response) {
-    return response.json();
-}).then(function(json) {
-    displayRequests(json);
-});
+function pollApi() {
+    console.log('aboveId: ' + aboveId)
+    var url = '/api/';
+    if(aboveId != false) {
+        url += aboveId + '/'
+    }
+    fetch(url, {
+        method: 'get'
+    }).then(function(response) {
+        return response.json();
+    }).then(function(json) {
+        displayRequests(json);
+        if(json.length > 0){
+            aboveId = json[0]['id']
+        }
+    });
+}
+
+var aboveId = false;  // Nasty global
+pollApi();
+setInterval(function() { pollApi(); }, 1000);

@@ -1,6 +1,6 @@
 # Immediate
 
-0. Expand stand alone request page
+0. Expand stand alone request page. Move JS to footer
 1. Continually poll the API
 2. Load more on the API (pagination)
 
