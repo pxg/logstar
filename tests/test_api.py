@@ -39,8 +39,7 @@ def test_api_request_returns_request_data(client):
 
     response = client.get(url_for('api_requests'))
 
-    assert response.json[0]['url'] == \
-        'http://127.0.0.1:8000/user-agent?name=asdf'
+    assert response.json[0]['url'] == 'http://127.0.0.1:8000/user-agent?name=asdf'
 
 
 def test_api_request_ordered_newest_first(client):

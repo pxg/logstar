@@ -10,6 +10,8 @@ from flask import jsonify, render_template
 # TODO: move me to serializers.py
 # TODO: needs unit test
 # TODO: do loop field and attempt to json serializer try catch
+
+
 def serialize_request(r):
     """
     Format the request for return by the API
@@ -52,11 +54,10 @@ def create_app():
         return render_template('request.html', request=request)
 
     @app.route('/api/')
-    # TODO: rename request_id to above
     @app.route('/api/<int:request_id>')
     def api_requests(request_id=None):
-        requests = Session().query(Request).order_by((
-            Request.created_at.desc()))
+        # TODO: rename request_id to above
+        requests = Session().query(Request).order_by((Request.created_at.desc()))
         if request_id is not None:
             requests = requests.filter(Request.id > request_id)
         return jsonify([serialize_request(r) for r in requests])

@@ -8,4 +8,5 @@ setup(
     name='logstar',
     packages=find_packages(),
     url='https://github.com/mypackage.git',
-    version='0.0.1')
+    version='0.0.1',
+)

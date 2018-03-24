@@ -21,7 +21,6 @@ Test with simple Salesforce library
 
 Have pytest automatically run httpbin
 Add CircleCI. Could use https://hub.docker.com/r/citizenstig/httpbin/
-Add black formatter
 Use Python type annotations
 Publish to Pypi
 Check for compatibility with Celery, RQ, etc

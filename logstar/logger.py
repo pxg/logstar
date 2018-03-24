@@ -2,6 +2,7 @@ import requests
 
 from .db import Session
 from .models import Request
+
 # For Monkey Patching
 old_boring_post = requests.post
 old_boring_get = requests.get
@@ -52,10 +53,8 @@ def log_request(method, *args, **kwargs):
         headers = str(headers)
 
     request_instance = Request(
-        headers=headers,
-        method=method,
-        payload=payload,
-        url=args[0])
+        headers=headers, method=method, payload=payload, url=args[0]
+    )
     return request_instance
 
 
