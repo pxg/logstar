@@ -50,7 +50,7 @@ def test_api_request_ordered_newest_first(client):
 
     response = client.get(url_for('api_requests'))
 
-    assert response.json[0]['id'] < response.json[1]['id']
+    assert response.json[0]['id'] > response.json[1]['id']
 
 
 def test_api_no_items_higher_than_id(client):

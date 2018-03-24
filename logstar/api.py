@@ -43,7 +43,8 @@ def create_app():
     @app.route('/api/')
     @app.route('/api/<int:request_id>')
     def api_requests(request_id=None):
-        requests = Session().query(Request).order_by('created_at')
+        requests = Session().query(Request).order_by((
+            Request.created_at.desc()))
         if request_id is not None:
             requests = requests.filter(Request.id > request_id)
         return jsonify([serialize_request(r) for r in requests])
