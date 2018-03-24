@@ -1,7 +1,7 @@
 # Immediate
 
-0. Stand alone request page
-1. Continually polls the API
+0. Expand stand alone request page
+1. Continually poll the API
 2. Load more on the API (pagination)
 
 3. Run API using package command, and move to it's own directory

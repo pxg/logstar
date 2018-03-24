@@ -1,4 +1,3 @@
-# TODO: rename file to app.py
 # TODO: make imports relative
 from logstar.models import Request
 from logstar.db import Session
@@ -7,14 +6,11 @@ from flask import abort, Flask
 from flask import jsonify, render_template
 
 
-# TODO: move me to serializers.py
-# TODO: needs unit test
-# TODO: do loop field and attempt to json serializer try catch
-
-
 def serialize_request(r):
     """
     Format the request for return by the API
+    TODO: needs unit test
+    TODO: do loop field and attempt to json serializer try catch
     """
     return {
         'id': r.id,
@@ -46,7 +42,7 @@ def create_app():
     def home():
         return render_template('home.html')
 
-    @app.route('/request/<int:request_id>')
+    @app.route('/request/<int:request_id>/')
     def request(request_id):
         request = Session().query(Request).get(request_id)
         if request is None:
@@ -54,7 +50,7 @@ def create_app():
         return render_template('request.html', request=request)
 
     @app.route('/api/')
-    @app.route('/api/<int:request_id>')
+    @app.route('/api/<int:request_id>/')
     def api_requests(request_id=None):
         # TODO: rename request_id to above
         requests = Session().query(Request).order_by((Request.created_at.desc()))

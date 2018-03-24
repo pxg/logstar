@@ -66,5 +66,5 @@ pytest -m "not webtest"
 From the root of the repo:
 ```
 export FLASK_DEBUG=1
-python logstar/api.py
+python logstar/app.py
 ```

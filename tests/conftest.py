@@ -2,7 +2,7 @@ import pytest
 import sqlalchemy
 
 from logstar import create_tables
-from logstar.api import create_app
+from logstar.app import create_app
 from logstar.db import engine, Session
 from logstar.models import Request
 
