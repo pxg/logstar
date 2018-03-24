@@ -33,6 +33,8 @@ def create_app():
     Alternative structure http://pytest-flask.readthedocs.io/en/latest/features.html
     """
     app = Flask(__name__)
+    # https://stackoverflow.com/questions/41144565/flask-does-not-see-change-in-js-file
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
     @app.route('/')
     def home():

@@ -63,5 +63,6 @@ pytest -m "not webtest"
 ## Running the API
 From the root of the repo:
 ```
+export FLASK_DEBUG=1
 python logstar/api.py
 ```
