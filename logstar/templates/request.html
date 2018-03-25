@@ -1,48 +1,36 @@
+{% extends "base.html" %}
 <!--
-    TODO: extend template
-    TODO: pretty print json response with syntax highlighting
+TODO: pretty print json response with syntax highlighting
 -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-    <code>
-    <table>
-        <tr>
-            <th>URL</th>
-            <td>{{ request.url }}</td>
-        </tr>
-        <tr>
-            <th>method</th>
-            <td>{{ request.method }}</td>
-        </tr>
-        <tr>
-            <th>status</th>
-            <td>{{ request.response_status_code }}</td>
-        </tr>
-        <tr>
-            <th>status</th>
-            <td>{{ request.response_status_code }}</td>
-        </tr>
-        <tr>
-            <th>time</th>
-            <td>{{ request.time }}</td>
-        </tr>
-        <tr>
-            <th>created at</th>
-            <td>{{ request.created_at }}</td>
-        </tr>
-        <tr>
-            <th>response content</th>
-            <td>{{ request.response_content }}</td>
-        </tr>
-        <tr>
-            <th>response headers</th>
-            <td>{{ request.response_headers }}</td>
-        </tr>
-    </table>
-    </code>
-</body>
-</html>
+{% block content %}
+<table cellspacing="10">
+    <tr>
+        <th>URL</th>
+        <td>{{ request.url }}</td>
+    </tr>
+    <tr>
+        <th>method</th>
+        <td>{{ request.method }}</td>
+    </tr>
+    <tr>
+        <th>status</th>
+        <td>{{ request.response_status_code }}</td>
+    </tr>
+    <tr>
+        <th>time</th>
+        <td>{{ request.time }}</td>
+    </tr>
+    <tr>
+        <th>created at</th>
+        <td>{{ request.created_at }}</td>
+    </tr>
+    <tr>
+        <th>response content</th>
+        <td>{{ request.response_content }}</td>
+    </tr>
+    <tr>
+        <th>response headers</th>
+        <td>{{ request.response_headers }}</td>
+    </tr>
+</table>
+{% endblock %}

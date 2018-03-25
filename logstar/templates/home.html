@@ -1,26 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-    <code>
-    <h1>LogStar</h1>
-    <table id='requests' cellspacing="10">
-        <tr>
-            <th>URL</th>
-            <th>time</th>
-            <th>method</th>
-            <th>status</th>
-            <th>created at</th>
-            <!-- TODO: add status, method, time -->
-        </tr>
-    </table>
-    <!--
-    TODO: continually poll the API looking for newer requests
-    TODO: add get more button
-    -->
-    </code>
-    <script src="{{ url_for('static', filename = 'app.js') }}"></script>
-</body>
-</html>
+{% extends "base.html" %}
+<!--
+TODO: add get more button
+TODO: add extra block for JS
+-->
+
+{% block content %}
+<table id='requests' cellspacing="10">
+    <tr>
+        <th>URL</th>
+        <th>time</th>
+        <th>method</th>
+        <th>status</th>
+        <th>created at</th>
+    </tr>
+</table>
+<script src="{{ url_for('static', filename = 'app.js') }}"></script>
+{% endblock %}
