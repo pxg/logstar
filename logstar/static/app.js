@@ -56,6 +56,6 @@ function pollApi() {
     });
 }
 
-var aboveId = false;  // Nasty global
+var aboveId = false;  // Nasty global find better polling technique
 pollApi();
-setInterval(function() { pollApi(); }, 1000);
+setInterval(function() { pollApi(); }, 5000);
