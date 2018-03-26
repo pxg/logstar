@@ -62,9 +62,8 @@ To run the tests without connecting to external services run:
 pytest -m "not webtest"
 ```
 
-## Running the API
-From the root of the repo:
+## Running the App
 ```
-export FLASK_DEBUG=1
-python logstar/app.py
+logstar
 ```
+This will run the app on http://127.0.0.1:5000/.
