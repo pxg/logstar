@@ -1,14 +1,8 @@
 # Immediate
 
-0. Install from master on Github
-1. Install venv from scratch. Flask threaded=True test
-2. Rename example_app.py to request.py and external_lib_request in examples folder
-3. Run server with gunicorn or uwsgi
-4. Example server
-
----
-
-Listen to Tool
+0. Relative imports for app (check tests work)
+1. Run server with gunicorn or uwsgi
+2. Example server EC2/Heroku
 
 ---
 
