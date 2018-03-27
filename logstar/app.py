@@ -63,4 +63,4 @@ def create_app():
 
 def run_app():
     app = create_app()
-    app.run()
+    app.run(threaded=True)
