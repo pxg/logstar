@@ -1,19 +1,14 @@
 import requests
 
-from .db import engine
+from .database import init_db
 from .logger import get_and_log, post_and_log
-from .models import Base
-
-
-def create_tables():
-    Base.metadata.create_all(engine)
 
 
 def install():
     """
     Check the database connection by creating the tables
     """
-    create_tables()
+    init_db()
 
 
 def test_request():
@@ -22,7 +17,8 @@ def test_request():
     correctly
     """
     logstar_on()
-    requests.get('http://httpbin.org/')
+    # requests.get('http://httpbin.org/')
+    requests.get('http://petegraham.co.uk/')
 
 
 def logstar_on():
