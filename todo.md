@@ -1,8 +1,7 @@
 # Immediate
 
-0. Relative imports for app (check tests work)
-1. Run server with gunicorn or uwsgi
-2. Example server EC2/Heroku
+0. Run server with gunicorn or uwsgi
+1. Example server EC2/Heroku
 
 ---
 

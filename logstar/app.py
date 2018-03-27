@@ -1,6 +1,5 @@
-# TODO: make imports relative
-from logstar.models import Request
-from logstar.db import Session
+from .models import Request
+from .db import Session
 
 from flask import abort, Flask
 from flask import jsonify, render_template

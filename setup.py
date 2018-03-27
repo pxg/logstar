@@ -6,12 +6,7 @@ setup(
     classifiers=['Private :: Do Not Upload'],
     description='API requests logging',
     entry_points={'console_scripts': ['logstar = logstar.app:run_app']},
-    install_requires=[
-        'Flask',
-        'psycopg2-binary',
-        'SQLAlchemy',
-        'requests',
-    ],
+    install_requires=['Flask', 'psycopg2-binary', 'SQLAlchemy', 'requests'],
     name='logstar',
     packages=find_packages(),
     url='https://github.com/mypackage.git',

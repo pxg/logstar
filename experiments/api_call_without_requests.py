@@ -3,6 +3,7 @@ Example of how to monkey patch urlib to get data about the request and response
 """
 import urllib.request
 import urllib.parse
+
 old_boring_urlopen = urllib.request.urlopen
 
 
