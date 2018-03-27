@@ -12,7 +12,7 @@ setup(
             'logstar_test_request = logstar:test_request',
         ]
     },
-    install_requires=['Flask', 'psycopg2-binary', 'SQLAlchemy', 'requests'],
+    install_requires=['Flask', 'gunicorn', 'psycopg2-binary', 'SQLAlchemy', 'requests'],
     name='logstar',
     packages=find_packages(),
     url='https://github.com/mypackage.git',

@@ -1,16 +1,11 @@
 # Immediate
 
-0. log_star install command
-1. log_test_request command
+0. Run on port 80. Install Nginx with reverse proxy
+1. Set-up Gunicorn to run with supervisor or similar
 
 ---
 
-0. Example server EC2
-1. Create micro instance
-2. Install package
-3. Install postgres
-4. Log a requests
-5. Install posgres
+sqlalchemy.exc.TimeoutError: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30 (Background on this error at: http://sqlalche.me/e/3o7r)
 
 ---
 
