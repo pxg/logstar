@@ -1,6 +1,17 @@
 # Immediate
 
-0. Rename example_app.py to request.py and external_lib_request in examples folder
+0. Install from master on Github
+1. Install venv from scratch. Flask threaded=True test
+2. Rename example_app.py to request.py and external_lib_request in examples folder
+3. Run server with gunicorn or uwsgi
+4. Example server
+
+---
+
+Listen to Tool
+
+---
+
 1. Load more on app (add pagination to the API)
 2. Run app using package command
 3. Run the app from the package (make sure non-python files are included by installing from a Github URL with requirements.txt in fresh virtual environment)
