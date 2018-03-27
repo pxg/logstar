@@ -1,8 +1,7 @@
 from sqlalchemy import func
 from sqlalchemy import Column, DateTime, DECIMAL, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
 
-Base = declarative_base()
+from .database import Base
 
 
 class Request(Base):

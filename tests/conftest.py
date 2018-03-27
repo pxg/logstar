@@ -1,9 +1,8 @@
 import pytest
 import sqlalchemy
 
-from logstar import create_tables
 from logstar.app import create_app
-from logstar.db import engine, Session
+from logstar.database import db_session, engine, init_db
 from logstar.models import Request
 
 
@@ -22,12 +21,12 @@ def recreate_tables():
     meta = sqlalchemy.MetaData(engine)
     meta.reflect()
     meta.drop_all()
-    create_tables()
+    init_db()
 
 
 @pytest.fixture(autouse=True)
 def empty_requests_table():
-    session = Session()
+    session = db_session()
     session.query(Request).delete()
     session.commit()
 
@@ -37,7 +36,7 @@ def http_request():
     http_request = Request(
         method='GET', response_content='amazing content', url='http://petegraham.co.uk'
     )
-    session = Session()
+    session = db_session()
     session.add(http_request)
     session.commit()
     return http_request

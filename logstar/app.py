@@ -1,8 +1,8 @@
-from .models import Request
-from .db import Session
-
 from flask import abort, Flask
 from flask import jsonify, render_template
+
+from .database import db_session
+from .models import Request
 
 
 def serialize_request(r):
@@ -43,7 +43,7 @@ def create_app():
 
     @app.route('/request/<int:request_id>/')
     def request(request_id):
-        request = Session().query(Request).get(request_id)
+        request = db_session().query(Request).get(request_id)
         if request is None:
             abort(404)
         return render_template('request.html', request=request)
@@ -52,10 +52,20 @@ def create_app():
     @app.route('/api/<int:request_id>/')
     def api_requests(request_id=None):
         # TODO: rename request_id to above
-        requests = Session().query(Request).order_by((Request.created_at.desc()))
+        requests = db_session().query(Request).order_by((Request.created_at.desc()))
         if request_id is not None:
             requests = requests.filter(Request.id > request_id)
         return jsonify([serialize_request(r) for r in requests])
+
+    @app.teardown_appcontext
+    def shutdown_session(exception=None):
+        """
+        Needed to stop
+        http://docs.sqlalchemy.org/en/latest/errors.html#connections-and-transactions
+        Documentation on this technique
+        http://flask.pocoo.org/docs/0.12/patterns/sqlalchemy/
+        """
+        db_session.remove()
 
     return app
 
