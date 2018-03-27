@@ -63,7 +63,13 @@ pytest -m "not webtest"
 ```
 
 ## Running the App
+This will run the app on http://127.0.0.1:8000/ using Gunicorn, this is recommended for production:
 ```
-logstar
+gunicorn logstar.app:app -w 1 --threads 12
 ```
-This will run the app on http://127.0.0.1:5000/.
+
+To run a development version of the app:
+```
+export FLASK_DEBUG=1
+FLASK_APP=logstar/app.py flask run
+```

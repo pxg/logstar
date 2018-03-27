@@ -1,7 +1,16 @@
 # Immediate
 
-0. Run server with gunicorn or uwsgi
-1. Example server EC2/Heroku
+0. log_star install command
+1. log_test_request command
+
+---
+
+0. Example server EC2
+1. Create micro instance
+2. Install package
+3. Install postgres
+4. Log a requests
+5. Install posgres
 
 ---
 
