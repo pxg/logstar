@@ -5,7 +5,13 @@ setup(
     author='Pete Graham',
     classifiers=['Private :: Do Not Upload'],
     description='API requests logging',
-    entry_points={'console_scripts': ['logstar = logstar.app:run_app']},
+    entry_points={
+        'console_scripts': [
+            'logstar = logstar.app:run_app',
+            'logstar_install = logstar:install',
+            'logstar_test_request = logstar:test_request',
+        ]
+    },
     install_requires=['Flask', 'psycopg2-binary', 'SQLAlchemy', 'requests'],
     name='logstar',
     packages=find_packages(),
