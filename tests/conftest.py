@@ -1,3 +1,6 @@
+import subprocess
+from time import sleep
+
 import pytest
 import sqlalchemy
 
@@ -22,6 +25,19 @@ def recreate_tables():
     meta.reflect()
     meta.drop_all()
     init_db()
+
+
+@pytest.fixture(autouse=True, scope='session')
+def httpbin(request):
+    """
+    Start httpbin on http://127.0.0.1:8000/ so we can run fast tests which
+    require http requests to an external server
+    Adds about a second to test runs
+    """
+    p = subprocess.Popen(['gunicorn', 'httpbin:app'])
+    sleep(0.5)  # Required to give gunicorn time to start-up
+    yield
+    p.kill()
 
 
 @pytest.fixture(autouse=True)

@@ -1,11 +1,11 @@
 # Live server set-up
 
-0. Reinstall package
 1. Run on port 80. Install Nginx with reverse proxy
 2. Set-up Gunicorn to run with supervisor or similar
 
 ---
 
+Better error message if LOGSTAR_DB_URL is missing
 0. Move db.py functions
 1. Load more on app (add pagination to the API)
 2. Run app using package command
