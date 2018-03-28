@@ -52,9 +52,10 @@ def create_app():
     @app.route('/api/<int:request_id>/')
     def api_requests(request_id=None):
         # TODO: rename request_id to above
-        requests = db_session().query(Request).order_by((Request.created_at.desc()))
+        requests = db_session().query(Request).order_by(Request.created_at.desc())
         if request_id is not None:
             requests = requests.filter(Request.id > request_id)
+        requests = requests.limit(2)
         return jsonify([serialize_request(r) for r in requests])
 
     @app.teardown_appcontext

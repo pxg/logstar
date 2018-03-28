@@ -5,10 +5,9 @@
 
 ---
 
-Better error message if LOGSTAR_DB_URL is missing
-0. Move db.py functions
-1. Load more on app (add pagination to the API)
-2. Run app using package command
+0. Better error message if LOGSTAR_DB_URL is missing
+1. Move db.py functions
+2. Load more on app (add pagination to the API)
 3. Run the app from the package (make sure non-python files are included by installing from a Github URL with requirements.txt in fresh virtual environment)
 4. Set-up on server (EC2/Heroku)
 5. Publish to Pypi
@@ -25,9 +24,9 @@ Test with simple Salesforce library
 
 # Tech
 
+Flask blueprint (app, UI)
 Use config.py with Flask
-Have pytest automatically run httpbin
-Add CircleCI. Could use https://hub.docker.com/r/citizenstig/httpbin/
+Add CircleCI
 Use Python type annotations
 Check for compatibility with Celery, RQ, etc
 

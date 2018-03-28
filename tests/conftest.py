@@ -37,6 +37,7 @@ def httpbin(request):
     p = subprocess.Popen(['gunicorn', 'httpbin:app'])
     sleep(0.5)  # Required to give gunicorn time to start-up
     yield
+
     p.kill()
 
 
