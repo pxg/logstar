@@ -4,6 +4,13 @@ from .database import init_db
 from .logger import get_and_log, post_and_log
 
 
+def get_pagination_num():
+    """
+    """
+    pass
+
+
+# TODO: remove this function if this is all it does?
 def install():
     """
     Check the database connection by creating the tables
@@ -17,7 +24,6 @@ def test_request():
     correctly
     """
     logstar_on()
-    # requests.get('http://httpbin.org/')
     requests.get('http://petegraham.co.uk/')
 
 

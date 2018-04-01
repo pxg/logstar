@@ -71,6 +71,10 @@ def create_app():
     return app
 
 
-app = create_app()
-if __name__ == '__main__':
+def run_app():
+    """
+    Run the app threaded in debug mode for local development
+    """
+    app = create_app()
+    app.debug = True
     app.run(threaded=True)
