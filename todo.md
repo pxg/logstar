@@ -1,5 +1,3 @@
-get_pagination_num()
-
 1. Move db.py functions
 2. Load more on app (add pagination to the API)
 3. Run the app from the package change includes? Change readme command?

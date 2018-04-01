@@ -1,3 +1,4 @@
+import os
 import requests
 
 from .logger import get_and_log, post_and_log
@@ -5,13 +6,15 @@ from .logger import get_and_log, post_and_log
 
 def get_pagination_num():
     """
+    Get the pagination number of the number of requests we limit each API call
+    to
     """
-    pass
+    return os.environ.get('LOGSTAR_PAGINATION_NUMBER', 10)
 
 
 def test_request():
     """
-    Swtich logstar on and make a test request to make sure everthing is working
+    Switch logstar on and make a test request to make sure everthing is working
     correctly
     """
     logstar_on()
