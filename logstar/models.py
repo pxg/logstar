@@ -1,7 +1,7 @@
 from sqlalchemy import func
 from sqlalchemy import Column, DateTime, DECIMAL, Integer, String
 
-from .database import Base
+from .database import Base, db_session
 
 
 class Request(Base):
@@ -22,3 +22,17 @@ class Request(Base):
 
     def __repr__(self):
         return '{} {}'.format(self.id, self.url)
+
+
+def get_all_requests():
+    """
+    Get all requests from the requests table
+    """
+    return db_session().query(Request).all()
+
+
+def get_highest_request_id():
+    """
+    Get ID of request with the highest ID from the requests table
+    """
+    return db_session().query(Request).order_by(Request.id.desc()).limit(1).one().id

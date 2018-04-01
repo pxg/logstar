@@ -4,7 +4,7 @@ import requests
 from flask import url_for
 
 from logstar import logstar_on
-from logstar.db import get_highest_request_id
+from logstar.models import get_highest_request_id
 
 
 def test_api_returns_200_ok(client):
