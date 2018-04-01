@@ -8,7 +8,7 @@ setup(
     entry_points={
         'console_scripts': [
             'logstar = logstar.app:run_app',
-            'logstar_install = logstar:install',
+            'logstar_install = logstar.database:init_db',
             'logstar_test_request = logstar:test_request',
         ]
     },

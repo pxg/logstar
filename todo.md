@@ -1,5 +1,5 @@
-Test behaviour by unsetting LOGSTAR_DB_URL
 Check gunicorn set-up
+get_pagination_num()
 
 1. Move db.py functions
 2. Load more on app (add pagination to the API)
