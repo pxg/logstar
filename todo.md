@@ -1,4 +1,3 @@
-Check gunicorn set-up
 get_pagination_num()
 
 1. Move db.py functions

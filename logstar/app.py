@@ -28,14 +28,9 @@ def serialize_request(r):
 
 def create_app():
     """
-    Based on https://www.python-boilerplate.com/py3+flask+pytest/
-    Alternative structure
-    http://pytest-flask.readthedocs.io/en/latest/features.html
+    Create app, configure and add routes and views
     """
     app = Flask(__name__)
-    # https://stackoverflow.com/questions/41144565/flask-does-not-see-change-in-js-file
-    # Is this needed?
-    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
     @app.route('/')
     def home():
