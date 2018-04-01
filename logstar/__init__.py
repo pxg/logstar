@@ -1,23 +1,23 @@
+import os
 import requests
 
-from .database import init_db
 from .logger import get_and_log, post_and_log
 
 
-def install():
+def get_pagination_num():
     """
-    Check the database connection by creating the tables
+    Get the pagination number of the number of requests we limit each API call
+    to
     """
-    init_db()
+    return os.environ.get('LOGSTAR_PAGINATION_NUMBER', 10)
 
 
 def test_request():
     """
-    Swtich logstar on and make a test request to make sure everthing is working
+    Switch logstar on and make a test request to make sure everthing is working
     correctly
     """
     logstar_on()
-    # requests.get('http://httpbin.org/')
     requests.get('http://petegraham.co.uk/')
 
 

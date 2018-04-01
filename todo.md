@@ -1,22 +1,17 @@
+0. Load more on app (add pagination to the API)
+
+1. Run the app from the package change includes? Change readme command?
+2. Publish to Pypi
+3. Integrate with project for calling Monzo and Google sheets API
+4. Create intialization/installation command
+5. Make sure it works for put and delete requests
+6. Clean installation of Repo to make sure instructions are good
+7. Make serialization function smarter. TDD
+
 # Live server set-up
 
-1. Run on port 80. Install Nginx with reverse proxy
-2. Set-up Gunicorn to run with supervisor or similar
-
----
-
-Better error message if LOGSTAR_DB_URL is missing
-0. Move db.py functions
-1. Load more on app (add pagination to the API)
-2. Run app using package command
-3. Run the app from the package (make sure non-python files are included by installing from a Github URL with requirements.txt in fresh virtual environment)
-4. Set-up on server (EC2/Heroku)
-5. Publish to Pypi
-6. Integrate with project for calling Monzo and Google sheets API
-7. Create intialization/installation command
-8. Make sure it works for put and delete requests
-9. Clean installation of Repo to make sure instructions are good
-10. Make serialization function smarter. TDD
+Run on port 80. Install Nginx with reverse proxy
+Set-up Gunicorn to run with supervisor or similar
 
 # Later
 
@@ -25,9 +20,9 @@ Test with simple Salesforce library
 
 # Tech
 
+Flask blueprint (app, UI)
 Use config.py with Flask
-Have pytest automatically run httpbin
-Add CircleCI. Could use https://hub.docker.com/r/citizenstig/httpbin/
+Add CircleCI
 Use Python type annotations
 Check for compatibility with Celery, RQ, etc
 
