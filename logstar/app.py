@@ -72,10 +72,13 @@ def create_app():
     return app
 
 
+# Needed here for Gunicorn
+app = create_app()
+
+
 def run_app():
     """
     Run the app threaded in debug mode for local development
     """
-    app = create_app()
     app.debug = True
     app.run(threaded=True)
