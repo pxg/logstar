@@ -39,10 +39,9 @@ function truncate(string, length=80) {
 
 
 function pollApi() {
-    console.log('aboveId: ' + aboveId)
     var url = '/api/';
     if(aboveId != false) {
-        url += aboveId + '/'
+        url += 'above/' + aboveId + '/'
     }
     fetch(url, {
         method: 'get'

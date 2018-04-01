@@ -1,12 +1,11 @@
-0. Load more on app (add pagination to the API)
+0. Load more on app
 
-1. Run the app from the package change includes? Change readme command?
-2. Publish to Pypi
-3. Integrate with project for calling Monzo and Google sheets API
-4. Create intialization/installation command
-5. Make sure it works for put and delete requests
-6. Clean installation of Repo to make sure instructions are good
-7. Make serialization function smarter. TDD
+1. Publish to Pypi
+2. Integrate with project for calling Monzo and Google sheets API
+3. Create intialization/installation command
+4. Make sure it works for put and delete requests
+5. Clean installation of Repo to make sure instructions are good
+6. Make serialization function smarter. TDD
 
 # Live server set-up
 

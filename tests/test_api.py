@@ -58,7 +58,7 @@ def test_api_no_items_higher_than_id(client):
     requests.get('http://127.0.0.1:8000/user-agent')
     request_id = get_highest_request_id()
 
-    response = client.get(url_for('api_requests', request_id=request_id))
+    response = client.get(url_for('api_requests', above_id=request_id))
 
     assert response.json == []
 
@@ -69,7 +69,7 @@ def test_api_get_requests_newer_than_id(client):
     request_id = get_highest_request_id()
     requests.get('http://127.0.0.1:8000/user-agent')
 
-    response = client.get(url_for('api_requests', request_id=request_id))
+    response = client.get(url_for('api_requests', above_id=request_id))
 
     assert len(response.json) == 1
     assert response.json[0]['id'] == request_id + 1
