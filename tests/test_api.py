@@ -3,6 +3,7 @@ import json
 import requests
 from flask import url_for
 
+from conftest import http_request
 from logstar import logstar_on
 from logstar.models import get_highest_request_id
 
@@ -72,6 +73,21 @@ def test_api_get_requests_newer_than_id(client):
 
     assert len(response.json) == 1
     assert response.json[0]['id'] == request_id + 1
+
+
+def test_api_gets_requets_older_than_id(client):
+    logstar_on()
+    http_request()
+    http_request()
+    highest_id = http_request().id
+
+    response = client.get(url_for('api_requests', below_id=highest_id))
+
+    assert len(response.json) == 2
+    # Check below highest ID
+    assert response.json[0]['id'] < highest_id
+    # Check ordering
+    assert response.json[0]['id'] > response.json[1]['id']
 
 
 def test_api_pagination_limit(client):

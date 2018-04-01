@@ -46,11 +46,14 @@ def create_app():
 
     @app.route('/api/')
     @app.route('/api/<int:request_id>/')
-    def api_requests(request_id=None):
-        # TODO: rename request_id to above
+    @app.route('/api/below/<int:below_id>/')
+    def api_requests(request_id=None, below_id=None):
+        # TODO: rename request_id to above_id
         requests = db_session().query(Request).order_by(Request.created_at.desc())
         if request_id is not None:
             requests = requests.filter(Request.id > request_id)
+        if below_id is not None:
+            requests = requests.filter(Request.id < below_id)
         requests = requests.limit(get_pagination_num())
         return jsonify([serialize_request(r) for r in requests])
 
