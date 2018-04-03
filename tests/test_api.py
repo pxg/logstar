@@ -1,10 +1,9 @@
 import json
 
-import requests
 from flask import url_for
 
+from conftest import http_request
 from logstar import logstar_on
-from logstar.models import get_highest_request_id
 
 
 def test_api_returns_200_ok(client):
@@ -26,7 +25,7 @@ def test_api_no_request_returns_empy_list(client):
 
 def test_api_request_returns_one_item(client):
     logstar_on()
-    requests.get('http://127.0.0.1:8000/user-agent?name=pete')
+    http_request()
 
     response = client.get(url_for('api_requests'))
 
@@ -35,17 +34,17 @@ def test_api_request_returns_one_item(client):
 
 def test_api_request_returns_request_data(client):
     logstar_on()
-    requests.get('http://127.0.0.1:8000/user-agent?name=asdf')
+    request = http_request()
 
     response = client.get(url_for('api_requests'))
 
-    assert response.json[0]['url'] == 'http://127.0.0.1:8000/user-agent?name=asdf'
+    assert response.json[0]['url'] == request.url
 
 
 def test_api_request_ordered_newest_first(client):
     logstar_on()
-    requests.get('http://127.0.0.1:8000/user-agent?name=first')
-    requests.get('http://127.0.0.1:8000/user-agent?name=second')
+    http_request()
+    http_request()
 
     response = client.get(url_for('api_requests'))
 
@@ -54,33 +53,41 @@ def test_api_request_ordered_newest_first(client):
 
 def test_api_no_items_higher_than_id(client):
     logstar_on()
-    requests.get('http://127.0.0.1:8000/user-agent')
-    request_id = get_highest_request_id()
+    above_id = http_request().id
 
-    response = client.get(url_for('api_requests', request_id=request_id))
+    response = client.get(url_for('api_requests', above_id=above_id))
 
     assert response.json == []
 
 
 def test_api_get_requests_newer_than_id(client):
     logstar_on()
-    requests.get('http://127.0.0.1:8000/user-agent')
-    request_id = get_highest_request_id()
-    requests.get('http://127.0.0.1:8000/user-agent')
+    above_id = http_request().id
+    http_request()
 
-    response = client.get(url_for('api_requests', request_id=request_id))
+    response = client.get(url_for('api_requests', above_id=above_id))
 
     assert len(response.json) == 1
-    assert response.json[0]['id'] == request_id + 1
+    assert response.json[0]['id'] == above_id + 1
+
+
+def test_api_gets_requets_older_than_id(client):
+    logstar_on()
+    http_request()
+    highest_id = http_request().id
+
+    response = client.get(url_for('api_requests', below_id=highest_id))
+
+    assert response.json[0]['id'] < highest_id
 
 
 def test_api_pagination_limit(client):
     logstar_on()
-    requests.get('http://127.0.0.1:8000/user-agent?name=first')
-    requests.get('http://127.0.0.1:8000/user-agent?name=second')
-    requests.get('http://127.0.0.1:8000/user-agent?name=third')
+    http_request()
+    http_request()
+    latest_request_id = http_request().id
 
     response = client.get(url_for('api_requests'))
 
     assert len(response.json) == 2
-    assert response.json[0]['url'] == 'http://127.0.0.1:8000/user-agent?name=third'
+    assert response.json[0]['id'] == latest_request_id
