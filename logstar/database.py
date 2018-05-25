@@ -16,7 +16,7 @@ def get_database_url():
     """
     database_url = _get_database_url()
     if database_url is False:
-        sys.exit('LOGSTAR_DB_URL environment vairable is not set')
+        sys.exit('LOGSTAR_DB_URL environment variable not set')
     return database_url
 
 

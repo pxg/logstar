@@ -1,8 +1,4 @@
 {% extends "base.html" %}
-<!--
-TODO: add get more button
-TODO: add extra block for JS
--->
 
 {% block content %}
 <table id='requests' cellspacing="10">
@@ -14,5 +10,8 @@ TODO: add extra block for JS
         <th>created at</th>
     </tr>
 </table>
+
+<input id="more" type="submit" value="Load More" />
+
 <script src="{{ url_for('static', filename = 'app.js') }}"></script>
 {% endblock %}

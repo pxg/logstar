@@ -1,11 +1,15 @@
-0. Load more on app
+v1.0
+0. Make sure it works for put and delete requests
+1. Clean installation of Repo to make sure instructions are good
+2. Style the app
+3. Bump the version number
+4. Write release blog article
 
-1. Publish to Pypi
-2. Integrate with project for calling Monzo and Google sheets API
-3. Create intialization/installation command
-4. Make sure it works for put and delete requests
-5. Clean installation of Repo to make sure instructions are good
-6. Make serialization function smarter. TDD
+v1.1+
+Publish to Pypi
+Integrate with project for calling Monzo and Google sheets API
+Create intialization/installation command
+Make serialization function smarter. TDD
 
 # Live server set-up
 

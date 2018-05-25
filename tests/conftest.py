@@ -35,7 +35,7 @@ def httpbin(request):
     Adds about a second to test runs
     """
     p = subprocess.Popen(['gunicorn', 'httpbin:app'])
-    sleep(0.5)  # Required to give gunicorn time to start-up
+    sleep(1)  # Required to give gunicorn time to start-up
     yield
 
     p.kill()
