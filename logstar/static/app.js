@@ -1,16 +1,25 @@
 /** Loop our requests and output them to the table */
-function displayRequests(requests) {
-    var table = document.getElementById('requests')
-    for (var i=requests.length - 1; i >= 0; i--) {
-        displayRequest(table, requests[i]);
+function displayRequests(requests, top=true) {
+    if(top == true){
+        requests.reverse();
+    }
+    for (var i=0; i < requests.length; i++) {
+        displayRequest(requests[i], top);
     }
 }
 
 
 /** Display a request as a row in the table */
-function displayRequest(table, request) {
-    // Insert after the heading
-    var row = table.insertRow(1);
+function displayRequest(request, top) {
+    var table = document.getElementById('requests')
+    if(top == true){
+        // insert after header
+        row = 1;
+    }else{
+        // Insert at bottom
+        row = table.rows.length;
+    }
+    var row = table.insertRow(row);
     addCell(row, truncate(request['url']), '/request/' + request['id'] + '/');
     addCell(row, request['time']);
     addCell(row, request['method']);
@@ -48,13 +57,40 @@ function pollApi() {
     }).then(function(response) {
         return response.json();
     }).then(function(json) {
-        displayRequests(json);
         if(json.length > 0){
-            aboveId = json[0]['id']
+            aboveId = json[0]['id'];
+            console.log(aboveId);
+            // Set intial below ID value
+            if(belowId === false) {
+                belowId = json[json.length - 1]['id'];
+            }
         }
+        displayRequests(json);
     });
 }
 
-var aboveId = false;  // Nasty global find better polling technique
+
+function loadMoreApi() {
+    var url = '/api/';
+    url += 'below/' + belowId + '/'
+    fetch(url, {
+        method: 'get'
+    }).then(function(response) {
+        return response.json();
+    }).then(function(json) {
+        if(json.length > 0){
+            belowId = json[json.length - 1]['id'];
+        }
+        displayRequests(json, false);
+    });
+}
+
+// Nasty globals find better polling technique
+var aboveId = false;
+var belowId = false;
+
 pollApi();
 setInterval(function() { pollApi(); }, 5000);
+
+var loadMoreButton = document.getElementById("more");
+loadMoreButton.onclick = loadMoreApi;
