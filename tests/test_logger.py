@@ -28,6 +28,15 @@ def test_api_call_get_logs_request():
     assert type(request_items[0].time) == Decimal
 
 
+def test_api_call_patch_logs_request():
+    logstar_on()
+    requests.patch('http://127.0.0.1:8000/user-agent?name=pete')
+
+    request_items = get_all_requests()
+    assert len(request_items) == 1
+    assert request_items[0].method == 'PATCH'
+
+
 def test_api_call_post_logs_request():
     logstar_on()
     requests.post('http://127.0.0.1:8000/user-agent?name=pete')
@@ -39,6 +48,24 @@ def test_api_call_post_logs_request():
     assert '<h1>Method Not Allowed</h1>' in request_items[0].response_content
     assert request_items[0].response_status_code == 405
     assert type(request_items[0].created_at) == datetime.datetime
+
+
+def test_api_call_put_logs_request():
+    logstar_on()
+    requests.put('http://127.0.0.1:8000/user-agent?name=pete')
+
+    request_items = get_all_requests()
+    assert len(request_items) == 1
+    assert request_items[0].method == 'PUT'
+
+
+def test_api_call_delete_logs_request():
+    logstar_on()
+    requests.delete('http://127.0.0.1:8000/user-agent?name=pete')
+
+    request_items = get_all_requests()
+    assert len(request_items) == 1
+    assert request_items[0].method == 'DELETE'
 
 
 @pytest.mark.webtest

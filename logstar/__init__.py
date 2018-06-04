@@ -1,7 +1,9 @@
 import os
 import requests
 
-from .logger import get_and_log, post_and_log
+from .logger import (
+    delete_and_log, get_and_log, patch_and_log, post_and_log, put_and_log
+)
 
 
 def get_pagination_num():
@@ -26,5 +28,8 @@ def logstar_on():
     Switch logstar on so it's logs request and response data by monkey patching
     the requests get and post functions
     """
+    requests.delete = delete_and_log
     requests.get = get_and_log
+    requests.patch = patch_and_log
     requests.post = post_and_log
+    requests.put = put_and_log
