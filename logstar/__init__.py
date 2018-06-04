@@ -1,7 +1,7 @@
 import os
 import requests
 
-from .logger import get_and_log, post_and_log
+from .logger import get_and_log, post_and_log, put_and_log
 
 
 def get_pagination_num():
@@ -28,3 +28,4 @@ def logstar_on():
     """
     requests.get = get_and_log
     requests.post = post_and_log
+    requests.put = put_and_log
