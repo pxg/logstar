@@ -6,6 +6,7 @@ v1.0
 
 v1.1+
 Publish to Pypi
+Reduce duplicated code in logger.py
 Integrate with project for calling Monzo and Google sheets API
 Create intialization/installation command
 Make serialization function smarter. TDD

@@ -6,6 +6,7 @@ from .models import Request
 # For Monkey Patching
 old_boring_delete = requests.delete
 old_boring_get = requests.get
+old_boring_patch = requests.patch
 old_boring_post = requests.post
 old_boring_put = requests.put
 
@@ -36,6 +37,22 @@ def get_and_log(*args, **kwargs):
     session.commit()
 
     response = old_boring_get(*args, **kwargs)
+
+    log_response(request_instance, response)
+    session.commit()
+    return response
+
+
+def patch_and_log(*args, **kwargs):
+    """
+    Log the request and response data and call original requests patch function
+    """
+    request_instance = log_request('PATCH', *args, **kwargs)
+    session = db_session()
+    session.add(request_instance)
+    session.commit()
+
+    response = old_boring_patch(*args, **kwargs)
 
     log_response(request_instance, response)
     session.commit()

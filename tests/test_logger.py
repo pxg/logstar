@@ -28,6 +28,15 @@ def test_api_call_get_logs_request():
     assert type(request_items[0].time) == Decimal
 
 
+def test_api_call_patch_logs_request():
+    logstar_on()
+    requests.patch('http://127.0.0.1:8000/user-agent?name=pete')
+
+    request_items = get_all_requests()
+    assert len(request_items) == 1
+    assert request_items[0].method == 'PATCH'
+
+
 def test_api_call_post_logs_request():
     logstar_on()
     requests.post('http://127.0.0.1:8000/user-agent?name=pete')
