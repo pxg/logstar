@@ -50,13 +50,13 @@ def test_api_call_put_logs_request():
     assert request_items[0].method == 'PUT'
 
 
-# def test_api_call_delete_logs_request():
-#     logstar_on()
-#     requests.delete('http://127.0.0.1:8000/user-agent?name=pete')
+def test_api_call_delete_logs_request():
+    logstar_on()
+    requests.delete('http://127.0.0.1:8000/user-agent?name=pete')
 
-#     request_items = get_all_requests()
-#     assert len(request_items) == 1
-#     assert request_items[0].method == 'DELETE'
+    request_items = get_all_requests()
+    assert len(request_items) == 1
+    assert request_items[0].method == 'DELETE'
 
 
 @pytest.mark.webtest

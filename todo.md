@@ -1,9 +1,8 @@
 v1.0
-0. Make sure it works for put and delete requests
-1. Clean installation of Repo to make sure instructions are good
-2. Style the app
-3. Bump the version number
-4. Write release blog article
+0. Clean installation of Repo to make sure instructions are good
+1. Style the app
+2. Bump the version number
+3. Write release blog article
 
 v1.1+
 Publish to Pypi
