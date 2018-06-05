@@ -15,6 +15,6 @@ setup(
     install_requires=['Flask', 'gunicorn', 'psycopg2-binary', 'SQLAlchemy', 'requests'],
     name='logstar',
     packages=find_packages(),
-    url='https://github.com/mypackage.git',
-    version='0.0.1',
+    url='https://github.com/pxg/logstar',
+    version='1.0.0',
 )
