@@ -1,6 +1,6 @@
 # LogStar
 
-Tool to log and view metrics about API requests.
+Tool to log and view metrics about external API requests.
 
 The motivation for this project is I wanted a non-intrusive way to log external (http) API requests in Python. I investigated solutions such as New Relic but I couldn't find an existing tool which would log all the request and response data I wanted to capture.
 
@@ -17,7 +17,7 @@ Other solutions:
 
 For the first version I've chosen to go with monkey patching the requests library, form experimenting I've found monkey patching the standard library is possible if required.
 
-## Installation for development
+## Installation
 I recommend first creating a python3 virtual environment:
 ```
 mkvirtualenv --python=`which python3` logstar
@@ -56,22 +56,25 @@ For offline development you can run against a httpbin API:
 gunicorn httpbin:app
 ```
 
-To run a development version of the app:
+# Webapp
+There is a webapp which shows the requests Logstar is recording to run it:
+```
+gunicorn logstar.app:app -w 1 --threads 12
+```
+
+To run a development version of the webapp:
 ```
 export FLASK_DEBUG=1
 FLASK_APP=logstar/app.py flask run
 ```
 
 ## Running the tests
-First run httpbin as we require it to test against:
-```
-gunicorn httpbin:app
-```
-
-Next run:
 ```
 py.test
 ```
+The tests are configured to use a local DB called `logstar_test` the credentials are set in `pytest.ini`.
+
+Running the tests automatically runs httpbin using gunicorn in the background.
 
 To run the tests without connecting to external services run:
 ```

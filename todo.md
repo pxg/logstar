@@ -1,7 +1,7 @@
 v1.0
-0. Clean installation of Repo to make sure instructions are good
-1. Style the app
-2. Bump the version number
+0. Style the app
+1 Bump the version number
+2. Rewrite README
 3. Write release blog article
 
 v1.1+
