@@ -8,7 +8,7 @@ def test_home_return_200_ok(client):
 def test_home_returns_html(client):
     response = client.get(url_for('home'))
 
-    assert '<h1>LogStar</h1>' in str(response.data)
+    assert '<title>LogStar' in str(response.data)
 
 
 def test_request_page_return_200_ok(client, http_request):

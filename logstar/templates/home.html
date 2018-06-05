@@ -1,17 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<table id='requests' cellspacing="10">
-    <tr>
-        <th>URL</th>
-        <th>time</th>
-        <th>method</th>
-        <th>status</th>
-        <th>created at</th>
-    </tr>
+<table id='requests'>
+    <thead>
+        <tr>
+            <th>URL</th>
+            <th>Time</th>
+            <th>Method</th>
+            <th>Status</th>
+            <th>Created At</th>
+        </tr>
+    </thead>
 </table>
 
-<input id="more" type="submit" value="Load More" />
+<br/>
+
+<a id="more" class="btn-large waves-effect waves-light orange">Load More</a>
 
 <script src="{{ url_for('static', filename = 'app.js') }}"></script>
 {% endblock %}

@@ -1,8 +1,6 @@
 v1.0
-0. Style the app
-1 Bump the version number
-2. Rewrite README
-3. Write release blog article
+0. Rewrite README
+1. Write release blog article
 
 v1.1+
 Publish to Pypi
