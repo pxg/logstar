@@ -1,13 +1,20 @@
 v1.0
-0. Rewrite README
-1. Write release blog article
+0. Click whole row for detail page
+1. Write blog article
+2. Rewrite README
 
 v1.1+
+Move this file to Github projects
+Have all CSS, JS, etc local
 Publish to Pypi
 Reduce duplicated code in logger.py
 Integrate with project for calling Monzo and Google sheets API
 Create intialization/installation command
 Make serialization function smarter. TDD
+
+v1.2
+Log using customer logger rather than monkey patching
+Check errors due to lack of DB connection etc do not crash app
 
 # Live server set-up
 
@@ -23,7 +30,6 @@ Test with simple Salesforce library
 
 Flask blueprint (app, UI)
 Use config.py with Flask
-Add CircleCI
 Use Python type annotations
 Check for compatibility with Celery, RQ, etc
 
@@ -31,4 +37,3 @@ Check for compatibility with Celery, RQ, etc
 
 logstar_off function
 logstar decorator for functions
-Do all logging using python logging to avoid issues with DB writing blocking

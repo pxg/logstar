@@ -23,8 +23,20 @@ function displayRequest(request, top) {
     addCell(row, truncate(request['url']), '/request/' + request['id'] + '/');
     addCell(row, request['time']);
     addCell(row, request['method']);
-    addCell(row, request['response_status_code']);
+    addCell(row, getStatusCodeDisplay(request['response_status_code']));
     addCell(row, request['created_at']);
+}
+
+/** Get the emoji to display with the status code **/
+function getStatusCodeDisplay(statusCode) {
+    var statusFirstDigit = statusCode.toString()[0];
+    if(statusFirstDigit == 4){
+        return statusCode + ' 😢';
+    }
+    if(statusFirstDigit == 5){
+        return statusCode + ' 😡';
+    }
+    return statusCode + ' 😀';
 }
 
 
@@ -59,7 +71,6 @@ function pollApi() {
     }).then(function(json) {
         if(json.length > 0){
             aboveId = json[0]['id'];
-            console.log(aboveId);
             // Set intial below ID value
             if(belowId === false) {
                 belowId = json[json.length - 1]['id'];
