@@ -1,3 +1,5 @@
+from random import randint
+
 from flask import abort, Flask
 from flask import jsonify, render_template
 
@@ -35,7 +37,9 @@ def create_app():
 
     @app.route('/')
     def home():
-        return render_template('home.html')
+        # Random number is so we always get JS changes in development
+        # TODO: use setting to toggle this
+        return render_template('home.html', rand=randint(1000, 9999))
 
     @app.route('/request/<int:request_id>/')
     def request(request_id):
