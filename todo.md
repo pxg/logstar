@@ -1,5 +1,5 @@
 v1.0
-0. Click whole row for detail page
+0. Pretty print JSON on details page
 1. Write blog article
 2. Rewrite README
 

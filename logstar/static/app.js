@@ -14,17 +14,18 @@ function displayRequest(request, top) {
     var table = document.getElementById('requests')
     if(top == true){
         // insert after header
-        row = 1;
+        var rowNumber = 1;
     }else{
         // Insert at bottom
-        row = table.rows.length;
+        var rowNumber = table.rows.length;
     }
-    var row = table.insertRow(row);
-    addCell(row, truncate(request['url']), '/request/' + request['id'] + '/');
+    var row = table.insertRow(rowNumber);
+    addCell(row, truncate(request['url']), request['url']);
     addCell(row, request['time']);
     addCell(row, request['method']);
     addCell(row, getStatusCodeDisplay(request['response_status_code']));
     addCell(row, request['created_at']);
+    addCell(row, 'Details', '/request/' + request['id'] + '/');
 }
 
 /** Get the emoji to display with the status code **/

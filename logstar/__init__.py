@@ -20,7 +20,7 @@ def test_request():
     correctly
     """
     logstar_on()
-    requests.get('https://httpbin.org/status/500')
+    requests.post('https://httpbin.org/status/500')
     # requests.get('http://petegraham.co.uk/')
 
 
