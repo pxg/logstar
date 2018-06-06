@@ -21,7 +21,6 @@ def test_request():
     """
     logstar_on()
     requests.post('https://httpbin.org/status/500')
-    # requests.get('http://petegraham.co.uk/')
 
 
 def logstar_on():
