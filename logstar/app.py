@@ -2,6 +2,7 @@ from random import randint
 
 from flask import abort, Flask
 from flask import jsonify, render_template
+from flask_cors import CORS
 
 from . import get_pagination_num
 from .database import db_session
@@ -70,6 +71,7 @@ def create_app():
         """
         db_session.remove()
 
+    CORS(app)
     return app
 
 
