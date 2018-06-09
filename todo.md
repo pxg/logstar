@@ -1,7 +1,7 @@
 v1.0
 0. Pretty print JSON on details page
 1. Write blog article
-2. Rewrite README
+2. Refine README
 
 v1.1+
 Move this file to Github projects
