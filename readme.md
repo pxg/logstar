@@ -2,22 +2,52 @@
 
 Tool to log and view metrics about external API requests.
 
-The motivation for this project is I wanted a non-intrusive way to log external (http) API requests in Python. I investigated solutions such as New Relic but I couldn't find an existing tool which would log all the request and response data I wanted to capture.
+## Installing the Logstar library
 
-## Approach
-I thought a clean way to capture http(s) requests would be by using the Python logging module. However this has the limitation that it doesn't show the data returned from the server # https://stackoverflow.com/questions/10588644/how-can-i-see-the-entire-http-request-thats-being-sent-by-my-python-application.
+Install package from Github:
+```
+pip install -e git+https://github.com/pxg/logstar.git@master#egg=logstar
+```
 
-Other solutions:
-- Monkey patch requests
-- Use a proxy
-- Use a packet logger, wireshark, etc
-- Do something on the OS networking level
-- Do something montioring networking between containers
-- Do something on the AWS level
+Create the database:
+```
+psql
+create database logstar;
+```
 
-For the first version I've chosen to go with monkey patching the requests library, form experimenting I've found monkey patching the standard library is possible if required.
+Set the follow environment variable:
+```
+export LOGSTAR_DB_URL='postgresql://petegraham@localhost/logstar'
+```
 
-## Installation
+Check your database connection and create your tables with:
+```
+logstar_install
+```
+
+Run the following command to make a request which should be logged to the DB:
+```
+logstar_test_request
+```
+
+You can test this has worked by looking directly in the requests table in the database, or alternatively you can run the webapp.
+
+## Running the webapp
+Run the API with:
+```
+gunicorn logstar.app:app -w 1 --threads 12 -b 0.0.0.0:8000
+```
+This will run the API on http://127.0.0.1:8000/ using Gunicorn.
+
+Run the webapp with:
+```
+cd frontend
+npm install -g serve
+serve -s build
+```
+This will run the webapp on http://localhost:3000/.
+
+## Developing the Logstar Python library
 I recommend first creating a python3 virtual environment:
 ```
 mkvirtualenv --python=`which python3` logstar
@@ -56,19 +86,7 @@ For offline development you can run against a httpbin API:
 gunicorn httpbin:app
 ```
 
-# Webapp
-There is a webapp which shows the requests Logstar is recording to run it:
-```
-gunicorn logstar.app:app -w 1 --threads 12
-```
-
-To run a development version of the webapp:
-```
-export FLASK_DEBUG=1
-FLASK_APP=logstar/app.py flask run
-```
-
-## Running the tests
+## Running the Logstar Python library & API tests
 ```
 py.test
 ```
@@ -81,37 +99,22 @@ To run the tests without connecting to external services run:
 pytest -m "not webtest"
 ```
 
-## Production installation
-
-Install package from Github:
+# Developing the webapp
 ```
-pip install -e git+https://github.com/pxg/logstar.git@master#egg=logstar
-```
-
-Create the database:
-```
-psql
-create database logstar;
+cd frontend
+npm install
+npm start
 ```
 
-Set the follow environment variable:
+# Building the webapp for production
 ```
-export LOGSTAR_DB_URL='postgresql://petegraham@localhost/logstar'
+npm run build
 ```
+This will build the production webapp in `frontend/build/`.
 
-Check your database connection and create your tables with:
+# Developing the API
+To run a development version of the API:
 ```
-logstar_install
-```
-
-Run the following command to make a request which should be logged to the DB:
-```
-logstar_test_request
-```
-
-
-Run the app on http://127.0.0.1:8000/ using Gunicorn:
-```
-gunicorn logstar.app:app -w 1 --threads 12
-gunicorn logstar.app:app -w 1 --threads 12 -b 0.0.0.0:8000
+export FLASK_DEBUG=1
+FLASK_APP=logstar/app.py flask run
 ```

@@ -1,5 +1,4 @@
 v1.0
-0. Move React app to folder
 1. Update readme for react app development
 2. Update readme for react app product build
 3. Update readme for running react app in production
