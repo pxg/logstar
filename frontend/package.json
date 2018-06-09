@@ -1,5 +1,5 @@
 {
-  "name": "github-requester",
+  "name": "logstar",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

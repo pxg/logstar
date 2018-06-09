@@ -1,10 +1,7 @@
 v1.0
-1. Update readme for react app development
-2. Update readme for react app product build
-3. Update readme for running react app in production
-4. Pretty print JSON on details page
-5. Write blog article
-6. Rewrite README
+0. Pretty print JSON on details page
+1. Write blog article
+2. Refine README
 
 v1.1+
 Move this file to Github projects

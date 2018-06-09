@@ -49,10 +49,10 @@ function RequestDetail(props) {
 
 function getStatusCodeDisplay(statusCode) {
     const statusFirstDigit = statusCode.toString()[0];
-    if(statusFirstDigit === 4){
+    if(statusFirstDigit === '4'){
         return statusCode + ' 😢';
     }
-    if(statusFirstDigit === 5){
+    if(statusFirstDigit === '5'){
         return statusCode + ' 😡';
     }
     return statusCode + ' 😀';
