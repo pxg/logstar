@@ -3,6 +3,17 @@ import axios from 'axios'
 import './App.css';
 
 
+function CloseButton(props){
+  return (
+    <div onClick={props.clickClose} className="delete-btn">
+      <a className="btn-floating red">
+        <i className="large material-icons">clear</i>
+      </a>
+    </div>
+  );
+}
+
+
 function RequestDetail(props) {
   if(props.value === false){
     return null;
@@ -10,39 +21,48 @@ function RequestDetail(props) {
   const request = props.value;
   // var content = JSON.stringify(request.response_content, null, 2);
   return (
-    <div>
-      <button onClick={props.clickClose}>Close</button>
-      <table>
-        <tr>
-          <th>URL</th>
-          <td><a target="_launch" href="{ request.url }">{ request.url }</a></td>
-        </tr>
-        <tr>
-          <th>method</th>
-          <td>{ request.method }</td>
-        </tr>
-        <tr>
-          <th>status</th>
-          <td>{ request.response_status_code }</td>
-        </tr>
-        <tr>
-          <th>time</th>
-          <td>{ request.time }</td>
-        </tr>
-        <tr>
-          <th>created at</th>
-          <td>{ request.created_at }</td>
-        </tr>
-        <tr>
-          <th>response content</th>
-          <td>{ request.response_content }</td>
-        </tr>
-        <tr>
-          <th>response headers</th>
-          <td>{ request.response_headers }</td>
-        </tr>
-      </table>
+    <div className="row">
+      <div className="col s12">
+        <div className="card blue-grey darken-1">
+          <div className="card-content white-text">
+
+            <CloseButton clickClose={props.clickClose} />
+
+            <span className="card-title">{ request.url }</span>
+
+            <table>
+              <tbody>
+                <tr>
+                  <th>method</th>
+                  <td>{ request.method }</td>
+                </tr>
+                <tr>
+                  <th>status</th>
+                  <td>{ request.response_status_code }</td>
+                </tr>
+                <tr>
+                  <th>time</th>
+                  <td>{ request.time }</td>
+                </tr>
+                <tr>
+                  <th>created at</th>
+                  <td>{ request.created_at }</td>
+                </tr>
+                <tr>
+                  <th>response content</th>
+                  <td>{ request.response_content }</td>
+                </tr>
+                <tr>
+                  <th>response headers</th>
+                  <td>{ request.response_headers }</td>
+                </tr>
+              </tbody>
+            </table>
+
+        </div>
+      </div>
     </div>
+  </div>
   );
 }
 
@@ -138,14 +158,18 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div>
+    if(this.state.detailRequest) {
+      return (
         <RequestDetail
           value={this.state.detailRequest}
           clickClose={() => this.clickClose()}
         />
+      );
+    }
+    return (
+      <div>
         <div>
-          <table border="1">
+          <table>
             <thead>
               <tr>
                 <th>URL</th>
@@ -169,7 +193,7 @@ class App extends Component {
           </table>
         </div>
         <div className='button__container'>
-          <a onClick={this.getOlderItems} class="btn-large waves-effect waves-light orange">
+          <a onClick={this.getOlderItems} className="btn-large waves-effect waves-light orange">
             Load More
           </a>
           <p>{this.state.username}</p>
