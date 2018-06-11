@@ -1,7 +1,5 @@
-from random import randint
-
-from flask import abort, Flask
-from flask import jsonify, render_template
+from flask import Flask
+from flask import jsonify
 from flask_cors import CORS
 
 from . import get_pagination_num
@@ -35,19 +33,6 @@ def create_app():
     Create app, configure and add routes and views
     """
     app = Flask(__name__)
-
-    @app.route('/')
-    def home():
-        # Random number is so we always get JS changes in development
-        # TODO: use setting to toggle this
-        return render_template('home.html', rand=randint(1000, 9999))
-
-    @app.route('/request/<int:request_id>/')
-    def request(request_id):
-        request = db_session().query(Request).get(request_id)
-        if request is None:
-            abort(404)
-        return render_template('request.html', request=request)
 
     @app.route('/api/')
     @app.route('/api/above/<int:above_id>/')
