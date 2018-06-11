@@ -17,9 +17,7 @@ def test_api_call_get_logs_request():
     assert len(request_items) == 1
     assert request_items[0].url == 'http://127.0.0.1:8000/user-agent?name=pete'
     assert request_items[0].method == 'GET'
-    assert request_items[
-        0
-    ].response_content == '{\n  "user-agent": "python-requests/2.18.4"\n}\n'
+    assert 'python-requests/2.18.4' in request_items[0].response_content
     assert request_items[0].response_status_code == 200
     assert type(request_items[0].created_at) == datetime.datetime
     assert request_items[0].headers is None
