@@ -1,3 +1,4 @@
+import json
 from flask import Flask
 from flask import jsonify
 from flask_cors import CORS
@@ -11,15 +12,20 @@ def serialize_request(r):
     """
     Format the request for return by the API
     TODO: needs unit test
-    TODO: do loop field and attempt to json serializer try catch
     """
+    # TODO: add json_content field and use property to decide which to return
+    try:
+        content = json.loads(r.response_content)
+    except json.decoder.JSONDecodeError:
+        content = r.response_content
+
     return {
         'id': r.id,
         'url': r.url,
         'method': r.method,
         'headers': r.headers,
         'payload': r.payload,
-        'response_content': r.response_content,
+        'response_content': content,
         'response_status_code': r.response_status_code,
         'response_headers': r.response_headers,
         # Decimal TypeError: Object of type 'Decimal' is not JSON serializable

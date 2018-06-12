@@ -1,7 +1,16 @@
+PR Rename app.py as api.py
+PR improve API content headers (change DB field)
+PR improve webapp content JSON
+PR improve webapp content JSON
+PR to bump requirements
+
+Ability to click on one of the items
+That's all link on load more
+
 v1.0
-0. Pretty print JSON on details page
-1. Write blog article
-2. Refine README
+Pretty print JSON on details page
+Write blog article
+Refine README
 
 v1.1+
 Move this file to Github projects
